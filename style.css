@@ -346,7 +346,7 @@ p{font-size:1rem; line-height:1.6; color:#ddd; margin-bottom:1rem;}
 
 #contactForm {
   width: 100%;       /* full width of container */
-  max-width: 1000px;  /* change this to control form max width */
+  max-width: 100%;  /* change this to control form max width */
   padding: 1.5rem;
   box-sizing: border-box;
   margin: 0 auto;    /* centers form */
