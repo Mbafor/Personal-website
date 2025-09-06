@@ -324,7 +324,7 @@ p{font-size:1rem; line-height:1.6; color:#ddd; margin-bottom:1rem;}
 .resume-grid{max-width:90%;padding:1.5rem 1rem;gap:1rem;}
 .resume-actions{flex-direction:column;gap:0.8rem;}
 .contact-grid{justify-content:center;padding:1rem 0;}
-.contact-form{max-width:90%;padding:1.5rem;}
+.contact-form{max-width:95%:padding:1.5rem;}
 .contact-form label{font-size:0.95rem;}
 .form-actions{flex-direction:column;gap:0.8rem;}
 .contact-form::before{font-size:0.95rem;}
