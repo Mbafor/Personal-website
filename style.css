@@ -335,12 +335,21 @@ p{font-size:1rem; line-height:1.6; color:#ddd; margin-bottom:1rem;}
 .projects-grid{grid-template-columns:1fr;gap:1.5rem;}
 .resume-grid{max-width:90%;padding:1.5rem 1rem;gap:1rem;}
 .resume-actions{flex-direction:column;gap:0.8rem;}
-.contact-grid{justify-content:center;padding:1rem 0;}
-#contact-form {
+.contact-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers the form horizontally */
+  padding: 1rem 0;
   width: 100%;
-  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#contactForm {
+  width: 100%;       /* full width of container */
+  max-width: 800px;  /* change this to control form max width */
   padding: 1.5rem;
-  box-sizing: border-box; /* ensures padding doesn’t push it over 100% */
+  box-sizing: border-box;
+  margin: 0 auto;    /* centers form */
 }
 .contact-form label{font-size:0.95rem;}
 .form-actions{flex-direction:column;gap:0.8rem;}
