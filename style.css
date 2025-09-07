@@ -103,7 +103,7 @@ p{font-size:1rem; line-height:1.6; color:#ddd; margin-bottom:1rem;}
 .hero{display:flex;align-items:center;min-height:90vh;padding:4rem 0;position:relative;}
 .hero-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(1000px,1fr));gap:2rem;align-items:center;}
 .hero-avatar{border-radius:50%;width:150px;height:150px;object-fit:cover;margin-bottom:1rem;}
-.hero-title{font-size:2rem;margin-bottom:0.5rem;}
+.hero-title{font-size:2rem;margin-bottom:0.5rem;color:#ccc;  }
 .hero-sub{font-size:1rem;margin-bottom:1.5rem;color:#ccc;}
 .hero-cta .btn{margin-right:1rem;}
 .hero-stats{display:flex;justify-content:center;gap:2.5rem;margin-top:1.5rem;flex-wrap:wrap;list-style:none;padding:0;}
