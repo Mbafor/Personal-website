@@ -18,10 +18,17 @@ if (hamburger && navLinks) {
 // ===========================
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
-
+    const href = link.getAttribute('href');
+    
+    // Only prevent default and smooth scroll if it's an anchor link on the same page
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+    // For other links (like about.html or index.html#section), let them navigate normally
+    
+    // Close mobile menu if open
     if (navLinks && navLinks.classList.contains('active')) {
       navLinks.classList.remove('active');
       hamburger.textContent = '☰';
@@ -45,20 +52,46 @@ window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
 
 // ===========================
-// SKILL BAR ANIMATION
+// SKILL BAR ANIMATION - Interactive counting from 0 to target
 // ===========================
-const skills = document.querySelectorAll('.bar-fill');
+const skillBars = document.querySelectorAll('.skill .bar');
+let skillsAnimated = false;
+
 const animateSkills = () => {
-  const triggerBottom = window.innerHeight / 1.2;
-  skills.forEach(skill => {
-    const top = skill.getBoundingClientRect().top;
-    if (top < triggerBottom && !skill.dataset.filled) {
-      const pct = skill.getAttribute('data-pct') || '0%';
-      skill.style.width = pct;
-      skill.dataset.filled = true;
-    }
-  });
+  const skillsSection = document.getElementById('skills');
+  if (!skillsSection) return;
+  
+  const triggerBottom = window.innerHeight / 1.3;
+  const sectionTop = skillsSection.getBoundingClientRect().top;
+  
+  if (sectionTop < triggerBottom && !skillsAnimated) {
+    skillsAnimated = true;
+    
+    skillBars.forEach(bar => {
+      const targetPct = parseInt(bar.getAttribute('data-pct')) || 0;
+      const valueSpan = bar.querySelector('.bar-value');
+      
+      // Set the CSS variable for width animation
+      bar.style.setProperty('--pct', `${targetPct}%`);
+      bar.classList.add('animate');
+      
+      // Animate the number counting
+      let currentPct = 0;
+      const duration = 1500; // 1.5 seconds
+      const increment = targetPct / (duration / 16); // ~60fps
+      
+      const counter = setInterval(() => {
+        currentPct += increment;
+        if (currentPct >= targetPct) {
+          currentPct = targetPct;
+          clearInterval(counter);
+        }
+        valueSpan.textContent = Math.round(currentPct) + '%';
+      }, 16);
+    });
+  }
 };
+
 window.addEventListener('scroll', animateSkills);
 animateSkills();
 
@@ -108,7 +141,7 @@ progressBar.style.top = 0;
 progressBar.style.left = 0;
 progressBar.style.width = '0%';
 progressBar.style.height = '5px';
-progressBar.style.background = '#f8d210';
+progressBar.style.background = '#1e40af';
 progressBar.style.zIndex = 9999;
 document.body.appendChild(progressBar);
 
@@ -129,8 +162,8 @@ backTop.style.right = '20px';
 backTop.style.padding = '0.5rem 0.8rem';
 backTop.style.borderRadius = '50%';
 backTop.style.border = 'none';
-backTop.style.background = '#f8d210';
-backTop.style.color = '#121212';
+backTop.style.background = '#1e40af';
+backTop.style.color = '#eff0f3ff';
 backTop.style.fontSize = '1.2rem';
 backTop.style.cursor = 'pointer';
 backTop.style.display = 'none';
